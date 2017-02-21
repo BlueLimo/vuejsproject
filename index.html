@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ya'kov | VueJS Basics</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+	<!---Vue JS Instance -->
+
+	<div class="main-content">
+		<div class="content-left">
+			<form id="maintwo" v-cloak>
+				<h1>Order Pizza</h1>
+				<ul>
+					<li v-for="food in foods" v-on:click="toggleActive(food)" v-bind:class="{ 'active': food.active}">
+						{{food.name}} <span>{{food.price | currency}}</span>
+					</li>
+				</ul>
+				<div class="total">
+					Total Amount: <span>{{total() | currency}}</span>
+				</div>
+			</form>	
+		</div>
+		<div class="content-right">
+			<div class="vue-instance">
+				<div id="test-area">
+				  <p>{{ message }}</p>
+				</div>
+			</div>
+			<!---Showing -->
+			<div id="mainone" v-cloak v-on:click="hideTooltip" >
+			    <div class="tooltip" v-on:click.stop v-if="show_tooltip">
+			        <input type="text" v-model="text_content" />
+			    </div>
+				<p v-on:click.stop="toggleTooltip">{{text_content}}</p>
+			</div>
+			<div id="my_view">
+					<h4>Something new here</h4>
+				  <input v-model="search" type="text" />
+				  <ul>
+				    <li v-for="friend in friends | filterBy search in 'name'"> {{ friend.name }} </li>
+				  </ul>
+			</div>
+			
+		</div>
+	</div>
+
+	<script src="vue.js" type="text/javascript"></script>
+</body>
+</html>
